@@ -278,9 +278,15 @@ class Attack:
         Returns:
             results (Iterable[GoalFunctionResult]): an iterable of GoalFunctionResults of the original examples
         """
-        indices = indices or range(len(dataset))
+        if indices is None:
+            indices = range(len(dataset))
+
         if not isinstance(indices, deque):
             indices = deque(sorted(indices))
+        
+        if not indices:
+            return
+            yield
 
         while indices:
             i = indices.popleft()
@@ -313,9 +319,6 @@ class Attack:
             dataset: An iterable of (text, ground_truth_output) pairs.
             indices: An iterable of indices of the dataset that we want to attack. If None, attack all samples in dataset.
         """
-        if indices == []:
-            return
-            yield
 
         examples = self._get_examples_from_dataset(dataset, indices=indices)
 
