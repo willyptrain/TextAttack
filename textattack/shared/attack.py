@@ -288,6 +288,10 @@ class Attack:
             return
             yield
 
+        if not indices:
+            return
+            yield
+
         while indices:
             i = indices.popleft()
             try:
