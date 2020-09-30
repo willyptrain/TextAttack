@@ -319,9 +319,6 @@ class Attack:
             dataset: An iterable of (text, ground_truth_output) pairs.
             indices: An iterable of indices of the dataset that we want to attack. If None, attack all samples in dataset.
         """
-        if indices == []:
-            return
-            yield
 
         examples = self._get_examples_from_dataset(dataset, indices=indices)
 
